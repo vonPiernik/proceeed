@@ -15,6 +15,7 @@ class ApiController extends Controller
 
     public function actionIndex()
     {
+        return var_dump( User::find()->all() );
     }
 
     public function actionGraphql()

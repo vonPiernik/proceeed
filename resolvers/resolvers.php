@@ -2,13 +2,18 @@
 namespace resolvers;
 
 use Da\User\Model\User;
+use yii\helpers\ArrayHelper;
 
 $userById = function ($id) {
-    $genericObject = [];
-    $genericObject['id'] = 1;
-    $genericObject['username'] = 'test';
-    $genericObject['email'] = 'norbini12@gmail.com';
-    return [$genericObject];
+    $user = User::findOne($id);
+    $user = ArrayHelper::toArray($user, [
+        'Da\User\Model\User' => [
+            'id',
+            'username',
+            'email'
+        ],
+    ]);
+    return [$user];
 };
 
 $userType = [

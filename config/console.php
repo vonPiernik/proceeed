@@ -29,6 +29,10 @@ $config = [
         'authManager' => [
             'class' => 'yii\rbac\DbManager'
         ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'useFileTransport' => true,
+        ]
     ],
     'params' => $params,
     /*
@@ -50,6 +54,9 @@ $config = [
             ],
         ],
     ],
+    'modules' => [
+        'user' =>  Da\User\Module::class,
+    ]
 ];
 
 if (YII_ENV_DEV) {
