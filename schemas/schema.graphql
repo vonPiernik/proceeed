@@ -1,9 +1,0 @@
-type User {
-  id: Int
-  username: String
-  email: String
-}
-
-type Query {
-  users(id: Int): [User]
-}
