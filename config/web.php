@@ -46,7 +46,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'api/task']
+                ['class' => 'yii\rest\UrlRule', 'controller' => ['api/task', 'api/procedure']],
             ],
         ],
         'authManager' => [

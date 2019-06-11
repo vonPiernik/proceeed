@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use Da\User\Model\User;
 
 /**
  * This is the model class for table "procedure".
@@ -35,6 +36,7 @@ class Procedure extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 255],
             [['name'], 'unique'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['tasks'], 'required']
         ];
     }
 

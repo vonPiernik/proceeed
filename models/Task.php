@@ -30,7 +30,8 @@ class Task extends \yii\db\ActiveRecord
     {
         return [
             [['procedure_id', 'order'], 'required'],
-            [['procedure_id', 'order'], 'integer'],
+            [['procedure_id', 'order', 'state', 'previous_task_id', 'previous_task_state'], 'integer'],
+            [['previous_task_id'], 'exist', 'skipOnError' => true, 'targetClass' => Task::className(), 'targetAttribute' => ['previous_task_id' => 'id']],
             [['procedure_id'], 'exist', 'skipOnError' => true, 'targetClass' => Procedure::className(), 'targetAttribute' => ['procedure_id' => 'id']],
         ];
     }
@@ -44,7 +45,18 @@ class Task extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'procedure_id' => Yii::t('app', 'Procedure ID'),
             'order' => Yii::t('app', 'Order'),
+            'state' => Yii::t('app', 'State'),
+            'previous_task_id' => Yii::t('app', 'Previous Task ID'),
+            'previous_task_state' => Yii::t('app', 'Previous Task State'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPreviousTask()
+    {
+        return $this->hasOne(Task::className(), ['id' => 'previous_task_id']);
     }
 
     /**
