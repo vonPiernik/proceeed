@@ -27,7 +27,7 @@ $config = [
         ],
         'db' => $db,
         'authManager' => [
-            'class' => 'yii\rbac\DbManager'
+            'class' => 'Da\User\Component\AuthDbManagerComponent'
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',

@@ -50,14 +50,17 @@ $config = [
             ],
         ],
         'authManager' => [
-            'class' => 'yii\rbac\DbManager',
+            'class' => 'Da\User\Component\AuthDbManagerComponent',
             // uncomment if you want to cache RBAC items hierarchy
             // 'cache' => 'cache',
-        ],
+        ]
     ],
     'modules' => [  
         'user' => [
             'class' => Da\User\Module::class,
+			'classMap' => [
+				'User' => app\models\User::class,
+            ],
             // ...other configs from here: [Configuration Options](installation/configuration-options.md), e.g.
             // 'generatePasswords' => true,
             // 'switchIdentitySessionKey' => 'myown_usuario_admin_user_key',
