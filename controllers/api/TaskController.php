@@ -10,6 +10,6 @@ class TaskController extends ActiveController
 
     public function actionIndex()
     {
-        return null;
+        return 'test';
     }
 }
