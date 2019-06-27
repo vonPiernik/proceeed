@@ -53,7 +53,11 @@ $config = [
             'class' => 'Da\User\Component\AuthDbManagerComponent',
             // uncomment if you want to cache RBAC items hierarchy
             // 'cache' => 'cache',
-        ]
+        ],
+        'jwt' => [
+            'class' => 'sizeg\jwt\Jwt',
+            'key'   => 'secret',
+        ],
     ],
     'modules' => [  
         'user' => [
