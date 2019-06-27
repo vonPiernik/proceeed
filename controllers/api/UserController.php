@@ -64,14 +64,4 @@ class UserController extends Controller
             'token' => (string)$token,
         ]);
     }
-
-    /**
-     * @return \yii\web\Response
-     */
-    public function actionData()
-    {
-        return $this->asJson([
-            'success' => true,
-        ]);
-    }
 }
