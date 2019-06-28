@@ -9,6 +9,8 @@ $this->title = 'Proceeed';
     <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
 </div>
 
+<script src="/js/app.js"></script>
+
 <!-- loader -->
 <style>
 .lds-ellipsis {
