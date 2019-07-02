@@ -1,6 +1,8 @@
 import { Wrapper } from "./Wrapper";
 
-export const Login = () => {
+const Login = ({dispatch}) => {
+
+    dispatch({type: 'test', payload: 'test payload'})
     return(
       <Wrapper>
            <div className="p-5">
@@ -35,3 +37,7 @@ export const Login = () => {
       </Wrapper>
     );
   }
+
+// Redux.connect()(Login);
+const connectedLogin = Redux.connect()(Login);
+export { connectedLogin as Login };
