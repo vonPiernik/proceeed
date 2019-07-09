@@ -1,6 +1,10 @@
 import { Wrapper } from "./Wrapper";
+import { loginRequest, login } from "../_actions/auth";
 
-export const Login = () => {
+const Login = ({dispatch}) => {
+
+    dispatch( login({username: 'admin', password: '123'}) );
+    
     return(
       <Wrapper>
            <div className="p-5">
@@ -35,3 +39,7 @@ export const Login = () => {
       </Wrapper>
     );
   }
+
+// Redux.connect()(Login);
+const connectedLogin = Redux.connect()(Login);
+export { connectedLogin as Login };
