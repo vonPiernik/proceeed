@@ -32,18 +32,21 @@ class UserController extends Controller
     public function actionLogin()
     {
         $req = Yii::$app->request->post();
+        $username = null;
+        $password = null;
+
         if(array_key_exists('username', $req)) $username = $req['username'];
         if(array_key_exists('password', $req)) $password = $req['password'];
 
         if($username && $password){
             $u = User::findOne(['username' => $username]);
-            if(!$u) return;
+            if(!$u) throw new \yii\web\UnauthorizedHttpException('Wrong user or password');
 
             if(!Yii::$app->getSecurity()->validatePassword($password, $u->password_hash)){
-                return;   
+                throw new \yii\web\UnauthorizedHttpException('Wrong user or password');
             }
         } else {
-            return;
+            throw new \yii\web\UnauthorizedHttpException('Both username and password are required');
         }
         
         $signer = new \Lcobucci\JWT\Signer\Hmac\Sha256();

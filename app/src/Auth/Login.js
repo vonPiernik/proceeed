@@ -1,8 +1,10 @@
 import { Wrapper } from "./Wrapper";
+import { loginRequest, login } from "../_actions/auth";
 
 const Login = ({dispatch}) => {
 
-    dispatch({type: 'test', payload: 'test payload'})
+    dispatch( login({username: 'admin', password: '123'}) );
+    
     return(
       <Wrapper>
            <div className="p-5">
