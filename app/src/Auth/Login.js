@@ -1,9 +1,14 @@
 import { Wrapper } from "./Wrapper";
-import { loginRequest, login } from "../_actions/auth";
+import { login } from "../_actions/auth";
+
+const doSubmit = dispatch => {
+  let username = document.getElementById('username').value;
+  let password = document.getElementById('password').value;
+
+  dispatch( login({username, password}) );
+}
 
 const Login = ({dispatch}) => {
-
-    dispatch( login({username: 'admin', password: '123'}) );
     
     return(
       <Wrapper>
@@ -11,12 +16,12 @@ const Login = ({dispatch}) => {
                   <div className="text-center">
                     <h1 className="h4 text-gray-900 mb-4">Welcome Back!</h1>
                   </div>
-                  <form className="user" _lpchecked="1">
+                  <form className="user" _lpchecked="1" action="javascript:void(0);" id="loginForm" onSubmit={() => doSubmit(dispatch)}>
                     <div className="form-group">
-                      <input type="email" className="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." autoComplete="off" />
+                      <input type="text" className="form-control form-control-user" id="username" placeholder="Username" autoComplete="off" />
                     </div>
                     <div className="form-group">
-                      <input type="password" className="form-control form-control-user" id="exampleInputPassword" placeholder="Password" autoComplete="off" />
+                      <input type="password" className="form-control form-control-user" id="password" placeholder="Password" autoComplete="off" />
                     </div>
                     <div className="form-group">
                       <div className="custom-control custom-checkbox small">
@@ -24,9 +29,9 @@ const Login = ({dispatch}) => {
                         <label className="custom-control-label" htmlFor="customCheck">Remember Me</label>
                       </div>
                     </div>
-                    <a href="index.html" className="btn btn-primary btn-user btn-block">
+                    <button type="submit" className="btn btn-primary btn-user btn-block">
                       Login
-                    </a>
+                    </button>
                   </form>
                   <hr />
                   <div className="text-center">
