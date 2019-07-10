@@ -46,6 +46,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '\w+' => 'site/index',
                 ['class' => 'yii\rest\UrlRule', 'controller' => ['api/task', 'api/procedure']],
             ],
         ],

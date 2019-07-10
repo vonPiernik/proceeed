@@ -8,8 +8,7 @@ const doSubmit = dispatch => {
   dispatch( login({username, password}) );
 }
 
-const Login = ({dispatch}) => {
-    
+const Login = ({dispatch}) => {    
     return(
       <Wrapper>
            <div className="p-5">
