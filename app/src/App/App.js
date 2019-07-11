@@ -2,15 +2,24 @@ import { Login } from "../Auth";
 import { Router, Route, Redirect } from "react-router-dom";
 import { getToken } from "../_actions/auth";
 import { history } from "../_helpers/history";
+import { Sidebar } from "./Sidebar";
+import { Dashboard } from "./Dashboard";
 
-function Dashboard() {
-  return <h2>dash</h2>;
+function Panel() {
+  return (
+    <>
+    <div id="wrapper">
+      <Sidebar />
+      <Dashboard />
+    </div>
+    </>
+  );
 }
 
 export const App = () => {
   return(
     <Router history={history}>
-      <PrivateRoute path="/" exact component={Dashboard} />
+      <PrivateRoute path="/" exact component={Panel} />
       <Route path="/login" exact component={Login} />
     </Router>
   );
