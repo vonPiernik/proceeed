@@ -1,22 +1,35 @@
 import { createActions } from 'redux-actions';
 import userServices from '../_services/user.services';
+import { history } from '../_helpers/history';
 
-export const { loginRequest, loginSuccess, loginError } = createActions({
-    LOGIN_REQUEST: login => ({ login }),
-    LOGIN_SUCCESS: login => ({ login }),
-    LOGIN_ERROR: error => ({ error })
+export const authActions = createActions({
+    LOGIN: {
+        REQUEST: () => ({}),
+        SUCCESS: username => ({ username }),
+        ERROR: error => ({ error })
+    }
 })
+
+const storeToken = token => {
+    localStorage.setItem('proceeed_token', token);
+}
+
+export const getToken = () => {
+    return localStorage.getItem('proceeed_token');
+}
 
 export const login = (credentials) => { 
     return dispatch => {
-        dispatch( loginRequest(login) );
+        dispatch( authActions.login.request() );
 
         return userServices.login(credentials)
-            .then(user => {
-                dispatch( loginSuccess( user ) );
+            .then(response => {
+                storeToken(response.token);
+                history.push('/');
+                dispatch( authActions.login.success( credentials.username ) );
             })
             .catch(error => {
-                dispatch( loginError(error) );
+                dispatch( authActions.login.error(error) );
             });
     }
 }

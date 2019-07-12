@@ -11,7 +11,7 @@ export const doFetch = ({path, data, method = 'GET'}) => {
     })
     .then(response.handle, response.handleError)
     .then(response => {
-        resolve(response);
+        return response;
     })
     .catch(error => { 
         throw error
