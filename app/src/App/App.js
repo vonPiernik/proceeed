@@ -1,10 +1,12 @@
-import { Link, Redirect, Route, Router } from "react-router-dom";
+import { Redirect, Route, Router } from "react-router-dom";
 import { Login } from "../Auth";
 import { getToken } from "../_actions/auth";
 import { history } from "../_helpers/history";
 import { Dashboard } from "./Dashboard";
 import { Sidebar } from "./Sidebar";
 import { NewProcedure } from "../Procedures/NewProcedure";
+import { Hello } from "./Hello";
+import { Procedures } from "../Procedures/Procedures";
 
 function Panel() {
   return (
@@ -19,24 +21,6 @@ function Panel() {
         </Router>
       </Dashboard>
     </div>
-    </>
-  );
-}
-
-function Procedures() {
-  return (
-    <>
-    <h1>All your procedures</h1>
-    </>
-  );
-}
-
-function Hello() {
-  return (
-    <>
-    <h1>Welcome to Proceeed!</h1>
-    <hr />
-    <h4>Let's <Link to="/procedures/new">create</Link> your first procedure.</h4>
     </>
   );
 }
