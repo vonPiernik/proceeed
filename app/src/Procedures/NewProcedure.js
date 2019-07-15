@@ -13,18 +13,15 @@ class NewProcedure extends React.Component {
     }
 
     componentDidMount(){
-        this.props.dispatch( pageActions.info.setTitle('Procedure creator') )
+        // this.props.dispatch( pageActions.info.setTitle('Procedure creator') )
     }
 
     handleChange = e => {
         this.setState({[e.target.name]: e.target.value});
     }
 
-    setTitle = () => {
-        const {title} = this.state;
-        const {setTitle} = this.props;
-
-        setTitle(title);
+    setTasks = tasks => {
+        this.setState({tasks: tasks});
     }
 
     save = () => {
@@ -36,6 +33,7 @@ class NewProcedure extends React.Component {
         <>
             <Title handleChange={this.handleChange} />
             <Tasks />
+            <hr />
             <SaveButton save={this.save} />
         </>
         );

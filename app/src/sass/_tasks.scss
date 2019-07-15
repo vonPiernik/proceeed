@@ -1,0 +1,25 @@
+.add-new-task{
+    border: 2px dashed gainsboro;
+    cursor: pointer;
+
+    &:hover i {
+        background: #b7b9cc;
+        color: #fff !important;
+    }
+
+    i {
+        display: block;
+        width: 40px;
+        height: 40px;
+        margin: auto;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 40px;
+        font-size: 19px;
+    }
+}
+
+.single-task{
+    margin: 0 calc((100% - 420px) / 2);
+
+}
