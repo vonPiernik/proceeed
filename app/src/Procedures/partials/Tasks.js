@@ -1,14 +1,16 @@
-const Task = () => {
+const Task = ({i}) => {
     return (
     <div className="col-xl-3 col-md-6 mb-4 single-task">
         <div className="card border-left-primary shadow h-100">
         <div className="card-body">
             <div className="row no-gutters align-items-center">
             <div className="col-auto task-id text-gray-500 mr-4">
-                1
+                {i}
             </div>
             <div className="col">
-                <div className="h5 mb-0 font-weight-bold text-gray-800">Task name</div>
+                <div className="h5 mb-0 font-weight-bold text-gray-800">
+                    <input type="text" name={`task-${i}-name`} placeholder="Task name" />
+                </div>
             </div>
             </div>
         </div>
@@ -60,15 +62,15 @@ export class Tasks extends React.Component {
         const {tasks} = this.state;
         console.log('%c⧭', 'color: #f2ceb6', tasks);
         
-        let taksItems = tasks.map((task, index) => {
+        let taskItems = tasks.map((task, index) => {
             return <Task key={index} i={index} task={task} />
         });
-        console.log('%c⧭', 'color: #00e600', taksItems);
+        console.log('%c⧭', 'color: #00e600', taskItems);
 
         return(
             <>
             <TasksWrapper>
-                {taksItems}
+                {taskItems}
                 <AddNew addTask={this.addTask} />
             </TasksWrapper>
             </>
