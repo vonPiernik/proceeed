@@ -1,15 +1,15 @@
-const Task = ({i}) => {
+const Task = ({i, task, handleChange}) => {
     return (
     <div className="col-xl-3 col-md-6 mb-4 single-task">
         <div className="card border-left-primary shadow h-100">
         <div className="card-body">
             <div className="row no-gutters align-items-center">
             <div className="col-auto task-id text-gray-500 mr-4">
-                {i}
+                {task.order}
             </div>
             <div className="col">
                 <div className="h5 mb-0 font-weight-bold text-gray-800">
-                    <input type="text" name={`task-${i}-name`} placeholder="Task name" />
+                    <textarea rows="2" width="100%" name="name" data-task-id={i} placeholder="What should be done to complete this step?" onChange={handleChange} />
                 </div>
             </div>
             </div>
@@ -55,17 +55,28 @@ export class Tasks extends React.Component {
     }
 
     addTask = () => {
-        this.setState({tasks: [...this.state.tasks, {name: '', order: 1}]})
+        let order = this.state.tasks.length + 1; //@todo: in the future it will change, some task may be parallel
+
+        this.setState({tasks: [...this.state.tasks, {name: '', order}]})
+    }
+
+    handleChange = e => {
+        let id      = e.target.dataset.taskId;
+        let param   = e.target.name;
+        let value   = e.target.value;
+        let {tasks}   = this.state;
+
+        tasks[id][param] = value;
+
+        this.setState({tasks});
     }
 
     render(){
         const {tasks} = this.state;
-        console.log('%c⧭', 'color: #f2ceb6', tasks);
         
         let taskItems = tasks.map((task, index) => {
-            return <Task key={index} i={index} task={task} />
+            return <Task key={index} i={index} task={task} handleChange={this.handleChange} />
         });
-        console.log('%c⧭', 'color: #00e600', taskItems);
 
         return(
             <>
