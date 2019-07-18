@@ -1,18 +1,18 @@
 import { promisedSetState } from "../../_helpers/promisedState";
 
-const Task = ({i, task, handleChange}) => {
+const Task = ({i, task, handleChange, removeTask}) => {
     return (
     <div className="col-xl-3 col-md-6 mb-4 single-task">
         <div className="card border-left-primary shadow h-100">
         <div className="card-body">
-            <span className="single-task__remove"><i className="fas fa-trash fa-2x text-gray-500"></i></span>
+            <span className="single-task__remove"><i className="fas fa-trash fa-2x text-gray-500" onClick={removeTask} data-task-id={i}></i></span>
             <div className="row no-gutters align-items-center">
             <div className="col-auto task-id text-gray-500 mr-4">
                 {task.order}
             </div>
             <div className="col">
                 <div className="h5 mb-0 font-weight-bold text-gray-800">
-                    <textarea autoFocus rows="2" width="100%" name="name" data-task-id={i} placeholder="What should be done to complete this step?" onChange={handleChange} />
+                    <textarea autoFocus rows="2" width="100%" name="name" data-task-id={i} placeholder="What should be done to complete this step?" onChange={handleChange} value={task.name} />
                 </div>
             </div>
             </div>
@@ -79,11 +79,31 @@ export class Tasks extends React.Component {
         })
     }
 
+    removeTask = e => {
+        let id      = e.target.dataset.taskId;
+        let {tasks}   = this.state;
+
+        tasks = tasks.filter((task, index) => { return index != id });
+
+        tasks = this.updateOrder(tasks);
+        promisedSetState(this, { tasks } ).then( () => {
+            this.props.updateTasks( this.state.tasks );
+        })
+    }
+
+    updateOrder = tasks => {
+        tasks.forEach((task, index) => {
+            tasks[index].order = index + 1;
+        });
+
+        return tasks;
+    }
+
     render(){
         const {tasks} = this.state;
         
         let taskItems = tasks.map((task, index) => {
-            return <Task key={index} i={index} task={task} handleChange={this.handleChange} />
+            return <Task key={index} i={index} task={task} handleChange={this.handleChange} removeTask={this.removeTask} />
         });
 
         return(
