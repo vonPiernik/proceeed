@@ -20,13 +20,32 @@
 }
 
 .single-task{
-    margin: 0 calc((100% - 420px) / 2);
-
+    margin: 0 calc((100% - 420px) / 2) 0 calc((100% - 420px) / 2 - 30px);
+    padding: 0 0 0 30px;
+    
     textarea{
         width: 100%;
         border: 1px solid #ececec;
         font-size: 16px;
         padding: 10px;
         display: block;
+    }
+
+    &__remove {
+        position: absolute;
+        left: -30px;
+        top: 50%;
+        transform: translate(0px, -50%);
+        font-size: 8px;
+        cursor: pointer;
+        visibility: hidden;
+
+        &:hover i {
+            color: red !important;
+        }
+    }
+    
+    &:hover span.single-task__remove {
+        visibility: visible;
     }
 }

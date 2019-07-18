@@ -28,11 +28,15 @@ class NewProcedure extends React.Component {
         console.log('%c⧭', 'color: #27a700', 'save', this.state);
     }
 
+    updateTasks = tasks => {
+        this.setState( { tasks } );
+    }
+
     render(){
         return (
         <>
             <Title handleChange={this.handleChange} />
-            <Tasks />
+            <Tasks updateTasks={this.updateTasks} />
             <hr />
             <SaveButton save={this.save} />
         </>

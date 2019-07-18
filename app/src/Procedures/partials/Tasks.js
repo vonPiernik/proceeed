@@ -1,15 +1,18 @@
+import { promisedSetState } from "../../_helpers/promisedState";
+
 const Task = ({i, task, handleChange}) => {
     return (
     <div className="col-xl-3 col-md-6 mb-4 single-task">
         <div className="card border-left-primary shadow h-100">
         <div className="card-body">
+            <span className="single-task__remove"><i className="fas fa-trash fa-2x text-gray-500"></i></span>
             <div className="row no-gutters align-items-center">
             <div className="col-auto task-id text-gray-500 mr-4">
                 {task.order}
             </div>
             <div className="col">
                 <div className="h5 mb-0 font-weight-bold text-gray-800">
-                    <textarea rows="2" width="100%" name="name" data-task-id={i} placeholder="What should be done to complete this step?" onChange={handleChange} />
+                    <textarea autoFocus rows="2" width="100%" name="name" data-task-id={i} placeholder="What should be done to complete this step?" onChange={handleChange} />
                 </div>
             </div>
             </div>
@@ -57,7 +60,10 @@ export class Tasks extends React.Component {
     addTask = () => {
         let order = this.state.tasks.length + 1; //@todo: in the future it will change, some task may be parallel
 
-        this.setState({tasks: [...this.state.tasks, {name: '', order}]})
+        this.setState()
+        promisedSetState(this, { tasks: [ ...this.state.tasks, { name: '', order } ] }).then( () => {
+            this.props.updateTasks( this.state.tasks );
+        })
     }
 
     handleChange = e => {
@@ -68,7 +74,9 @@ export class Tasks extends React.Component {
 
         tasks[id][param] = value;
 
-        this.setState({tasks});
+        promisedSetState(this, { tasks } ).then( () => {
+            this.props.updateTasks( this.state.tasks );
+        })
     }
 
     render(){
