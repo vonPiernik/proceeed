@@ -2,6 +2,7 @@
 
 namespace app\controllers\api;
 
+use sizeg\jwt\JwtHttpBearerAuth;
 use yii\rest\ActiveController;
 
 class TaskController extends ActiveController
@@ -15,7 +16,8 @@ class TaskController extends ActiveController
     {
         $behaviors = parent::behaviors();
         $behaviors['authenticator'] = [
-            'class' => JwtHttpBearerAuth::class
+            'class' => JwtHttpBearerAuth::class,
+            'optional' => [],
         ];
 
         return $behaviors;

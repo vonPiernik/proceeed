@@ -3,6 +3,7 @@
 namespace app\controllers\api;
 
 use yii\rest\ActiveController;
+use sizeg\jwt\JwtHttpBearerAuth;
 
 class ProcedureController extends ActiveController
 {
@@ -21,8 +22,8 @@ class ProcedureController extends ActiveController
         return $behaviors;
     }
     
-    public function actionIndex()
+    public function actionCreate()
     {
-        return null;
+        return 'create';
     }
 }
