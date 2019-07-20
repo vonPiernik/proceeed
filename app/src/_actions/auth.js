@@ -25,7 +25,7 @@ export const login = (credentials) => {
         return userServices.login(credentials)
             .then(response => {
                 storeToken(response.token);
-                history.push('/');
+                history.push('/a');
                 dispatch( authActions.login.success( credentials.username ) );
             })
             .catch(error => {

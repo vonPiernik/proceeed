@@ -3,6 +3,7 @@ import { pageActions } from "../_actions/page";
 import { Title } from "./partials/Title";
 import { SaveButton } from "./partials/Buttons";
 import { Tasks } from "./partials/Tasks";
+import { create } from "../_actions/procedure";
 
 class NewProcedure extends React.Component {
     constructor(){
@@ -13,7 +14,7 @@ class NewProcedure extends React.Component {
     }
 
     componentDidMount(){
-        // this.props.dispatch( pageActions.info.setTitle('Procedure creator') )
+        this.props.dispatch( pageActions.info.setTitle('Procedure creator') )
     }
 
     handleChange = e => {
@@ -25,7 +26,7 @@ class NewProcedure extends React.Component {
     }
 
     save = () => {
-        console.log('%c⧭', 'color: #27a700', 'save', this.state);
+        this.props.dispatch( create(this.state) );
     }
 
     updateTasks = tasks => {

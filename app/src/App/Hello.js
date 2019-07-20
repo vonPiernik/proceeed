@@ -11,7 +11,7 @@ class Hello extends React.Component {
       return (
         <>
         <hr />
-        <h4>Let's <Link to="/procedures/new">create</Link> your first procedure.</h4>
+        <h4>Let's <Link to="/a/procedures/new">create</Link> your first procedure.</h4>
         </>
       );
     }

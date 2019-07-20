@@ -14,7 +14,7 @@ export const Sidebar = () =>{
       <hr className="sidebar-divider my-0" />
 
       <li className="nav-item active">
-        <Link className="nav-link" to='/'>
+        <Link className="nav-link" to='/a/'>
           <i className="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></Link>
       </li>
@@ -28,12 +28,12 @@ export const Sidebar = () =>{
      
       
       <li className="nav-item">
-        <Link className="nav-link" to="/procedures">
+        <Link className="nav-link" to="/a/procedures">
           <i className="fas fa-fw fa-angle-double-right"></i>
           <span>Your procedures</span></Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" to="/procedures/new">
+        <Link className="nav-link" to="/a/procedures/new">
           <i className="fas fa-fw fa-plus"></i>
           <span>New procedure</span></Link>
       </li>

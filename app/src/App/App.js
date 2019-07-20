@@ -15,9 +15,9 @@ function Panel() {
       <Sidebar />
       <Dashboard>
         <Router history={history}>
-          <PrivateRoute path="/" exact component={Hello} />
-          <PrivateRoute path="/procedures" exact component={Procedures} />
-          <PrivateRoute path="/procedures/new" exact component={NewProcedure} />
+          <PrivateRoute path="/a/" exact component={Hello} />
+          <PrivateRoute path="/a/procedures" exact component={Procedures} />
+          <PrivateRoute path="/a/procedures/new" exact component={NewProcedure} />
         </Router>
       </Dashboard>
     </div>
@@ -29,8 +29,8 @@ export const App = () => {
   // @todo: coś nie gra z tymi ścieżkami, '/' w niektórych sytuacjach powinna być exact a w niektóych nie
   return(
     <Router history={history}>
-      <PrivateRoute path="/" component={Panel} />
       <Route path="/login" exact component={Login} />
+      <PrivateRoute path="/a" component={Panel} />
     </Router>
   );
 }
