@@ -43,10 +43,10 @@ $config = [
         ],
         'db' => $db,
         'urlManager' => [
+            'class' => 'app\components\UrlManager',
             'enablePrettyUrl' => true,
-            'showScriptName' => false,
+            'showScriptName' => true,
             'rules' => [
-                '\w+|\w+/\w+' => 'site/index',
                 ['class' => 'yii\rest\UrlRule', 'controller' => ['api/task', 'api/procedure']],
             ],
         ],
